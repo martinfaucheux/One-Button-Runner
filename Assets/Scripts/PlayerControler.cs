@@ -93,6 +93,7 @@ public class PlayerControler : MonoBehaviour
         _isDead = true;
         GetComponent<Collider2D>().sharedMaterial.friction = crashFriction;
         _rigidBody.AddForce(crashForce * Vector2.right);
+        GameEvents.instance.GameOverTrigger();
         Destroy(this);
     }
 
