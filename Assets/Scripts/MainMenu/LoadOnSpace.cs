@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoadOnSpace : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    public KeyCode keyCode;
+    public string sceneName;
+
     void Update()
     {
-        
+        if (Input.GetKeyDown(keyCode))
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }
