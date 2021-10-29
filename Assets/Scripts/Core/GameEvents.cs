@@ -5,6 +5,7 @@ public class GameEvents : MonoBehaviour
 {
     public static GameEvents instance = null;
     public event Action onGameOver;
+    public event Action onScoreChange;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -27,6 +28,14 @@ public class GameEvents : MonoBehaviour
         if (onGameOver != null)
         {
             onGameOver();
+        }
+    }
+
+    public void ScoreChangeTrigger()
+    {
+        if (onScoreChange != null)
+        {
+            onScoreChange();
         }
     }
 

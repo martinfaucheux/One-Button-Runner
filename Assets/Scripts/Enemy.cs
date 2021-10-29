@@ -5,11 +5,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public LayerMask shurikenLayer;
+    int score = 10;
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (IsShuriken(collider))
         {
+            ScoreManager.instance.Add(score);
             Destroy(gameObject);
         }
     }
