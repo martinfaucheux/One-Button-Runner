@@ -25,15 +25,11 @@ public class BackgroundManager : MonoBehaviour
 
     void Update()
     {
+        transform.position += slideSpeed * Time.deltaTime * Vector3.right;
         if (NeedDisplacement())
         {
             transform.position = GetNextPosition();
         }
-    }
-
-    void FixedUpdate()
-    {
-        transform.position += slideSpeed * Time.deltaTime * Vector3.right;
     }
 
     private bool NeedDisplacement()

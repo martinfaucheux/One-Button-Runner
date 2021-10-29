@@ -44,7 +44,6 @@ public class PlayerControler : MonoBehaviour
 
             if (_isGrounded)
             {
-                Debug.Log("JUMP");
                 _isJumping = true;
                 _jumpTimeCounter = jumpTime;
                 _yVelocity = jumpForce;
@@ -72,6 +71,11 @@ public class PlayerControler : MonoBehaviour
         {
             _isJumping = false;
         }
+
+        if (!_isDead)
+        {
+            transform.position += moveSpeed * Time.deltaTime * Vector3.right;
+        }
     }
 
     private void FixedUpdate()
@@ -79,17 +83,10 @@ public class PlayerControler : MonoBehaviour
         Vector2 velocity = _rigidBody.velocity;
         velocity.y = _yVelocity;
         _rigidBody.velocity = velocity;
-
-        if (!_isDead)
-        {
-            transform.position += moveSpeed * Time.fixedDeltaTime * Vector3.right;
-        }
     }
 
     public void Die()
     {
-        Debug.Log("Game Over");
-
         _isDead = true;
         GetComponent<Collider2D>().sharedMaterial.friction = crashFriction;
         _rigidBody.AddForce(crashForce * Vector2.right);
