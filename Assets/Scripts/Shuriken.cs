@@ -19,12 +19,8 @@ public class Shuriken : MonoBehaviour
         {
             Die();
         }
-    }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        transform.position += Vector3.right * Time.fixedDeltaTime * speed;
+        transform.position += Vector3.right * Time.deltaTime * speed;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
