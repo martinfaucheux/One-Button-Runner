@@ -48,12 +48,16 @@ public class PlayerControler : MonoBehaviour
                 _jumpTimeCounter = jumpTime;
                 _yVelocity = jumpForce;
             }
-            else
+            else if (shurikenSpawner.HasShurikenLeft())
             {
+                _isJumping = true;
+                _jumpTimeCounter = jumpTime;
+                _yVelocity = jumpForce;
                 shurikenSpawner.Spawn();
             }
         }
 
+        // The player is still holding the button while jumping
         else if (Input.GetKey(keyCode) && _isJumping)
         {
             if (_jumpTimeCounter > 0)
@@ -63,10 +67,12 @@ public class PlayerControler : MonoBehaviour
             }
             else
             {
+                // max height reached
                 _isJumping = false;
             }
         }
 
+        // player cancelled the jump
         if (Input.GetKeyUp(keyCode))
         {
             _isJumping = false;

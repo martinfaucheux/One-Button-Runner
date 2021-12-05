@@ -14,6 +14,11 @@ public class ShurikenSpawner : MonoBehaviour
         _currentAmount = maxAmount;
     }
 
+    public bool HasShurikenLeft()
+    {
+        return _currentAmount > 0;
+    }
+
     public void Spawn()
     {
         if (_currentAmount > 0)
