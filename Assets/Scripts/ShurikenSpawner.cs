@@ -8,23 +8,31 @@ public class ShurikenSpawner : MonoBehaviour
     public int maxAmount = 1;
     private int _currentAmount = 0;
 
-
-    public void Recharge()
+    public int currentAmount
     {
-        _currentAmount = maxAmount;
+        get { return _currentAmount; }
+        set
+        {
+            _currentAmount = value;
+            GameEvents.instance.ShurikenCountChangeTrigger();
+        }
     }
 
     public bool HasShurikenLeft()
     {
-        return _currentAmount > 0;
+        return currentAmount > 0;
+    }
+    public void Recharge()
+    {
+        currentAmount = maxAmount;
     }
 
     public void Spawn()
     {
-        if (_currentAmount > 0)
+        if (HasShurikenLeft())
         {
             Instantiate(shurikenPrefab, transform.position, Quaternion.identity);
-            _currentAmount--;
+            currentAmount--;
         }
     }
 }

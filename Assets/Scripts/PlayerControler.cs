@@ -18,7 +18,7 @@ public class PlayerControler : MonoBehaviour
 
     // PRIVATE
     private Rigidbody2D _rigidBody;
-    private bool _isGrounded = false;
+    private bool _isGrounded = true;
     private float _jumpTimeCounter;
     private bool _isJumping = false;
     private float _yVelocity;
@@ -31,12 +31,12 @@ public class PlayerControler : MonoBehaviour
     void Update()
     {
         _yVelocity = _rigidBody.velocity.y;
+        bool wasGrounded = _isGrounded;
         _isGrounded = Physics2D.OverlapCircle(feetTransform.position, checkRadius, whatIsGround);
 
-        if (_isGrounded)
+        if (!wasGrounded && _isGrounded)
         {
             shurikenSpawner.Recharge();
-
         }
 
         if (Input.GetKeyDown(keyCode))
