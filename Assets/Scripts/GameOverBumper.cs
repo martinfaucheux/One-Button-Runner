@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class GameOverBumper : MonoBehaviour
 {
+    public LayerMask whatIsDeath;
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log(collider.gameObject.name);
-        GetComponentInParent<PlayerControler>().Die();
+        int layer = collider.gameObject.layer;
+        if (whatIsDeath == (whatIsDeath | (1 << layer)))
+        {
+            GetComponentInParent<PlayerControler>().Die();
+        }
     }
+
+
 }

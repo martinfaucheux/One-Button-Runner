@@ -2,14 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct EntityWeight
+{
+    public GameObject prefab;
+    public int weight;
+
+}
+
 public class EnemySpawner : MonoBehaviour
 {
     public float minY = 0.5f;
     public float maxY = 5;
     public float minInterDistance = 1f;
     public float cameraOffset = 150f;
-    public GameObject enemyPrefab;
-
+    public EntityWeight[] entityWeights;
+    private int _weightSum;
     private float _moveSpeed;
     private Transform _cameraTransform;
     private float _lastSpawnTime = 0f;
@@ -18,6 +26,8 @@ public class EnemySpawner : MonoBehaviour
     {
         _moveSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControler>().moveSpeed;
         _cameraTransform = Camera.main.transform;
+        SetWeightSum();
+
 
         GameEvents.instance.onGameOver += OnGameOver;
     }
@@ -31,7 +41,8 @@ public class EnemySpawner : MonoBehaviour
     {
         if (Time.time > _lastSpawnTime + minInterDistance / _moveSpeed)
         {
-            GameObject.Instantiate(enemyPrefab, GetSpawnPosition(), Quaternion.identity);
+            GameObject prefab = ChooseRandomEntity();
+            GameObject.Instantiate(prefab, GetSpawnPosition(), Quaternion.identity);
             _lastSpawnTime = Time.time;
         }
     }
@@ -46,5 +57,27 @@ public class EnemySpawner : MonoBehaviour
     private void OnGameOver()
     {
         this.enabled = false;
+    }
+
+    private void SetWeightSum()
+    {
+        foreach (EntityWeight entityWeight in entityWeights)
+        {
+            _weightSum += entityWeight.weight;
+        }
+    }
+
+    private GameObject ChooseRandomEntity()
+    {
+        int random = Random.Range(0, _weightSum);
+        foreach (EntityWeight entityWeight in entityWeights)
+        {
+            if (random < entityWeight.weight)
+            {
+                return entityWeight.prefab;
+            }
+            random -= entityWeight.weight;
+        }
+        return null;
     }
 }
