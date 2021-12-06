@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public LayerMask shurikenLayer;
     public Health healthComponent;
+    public int collisionDamage = 1;
     int score = 10;
 
     void OnTriggerEnter2D(Collider2D collider)

@@ -20,6 +20,11 @@ public class Health : MonoBehaviour
         private set { _currentHealth = value; }
     }
 
+    void Start()
+    {
+        currentHealth = maxHealth;
+    }
+
     public bool TakeDamage(int amount)
     {
         int newAmount = Mathf.Max(currentHealth - amount, 0);
@@ -34,6 +39,14 @@ public class Health : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject);
+        PlayerControler playerControler = GetComponent<PlayerControler>();
+        if (playerControler != null)
+        {
+            playerControler.Die();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

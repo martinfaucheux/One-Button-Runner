@@ -623,6 +623,7 @@ GameObject:
   - component: {fileID: 327298711}
   - component: {fileID: 327298710}
   - component: {fileID: 327298714}
+  - component: {fileID: 327298715}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -770,6 +771,19 @@ MonoBehaviour:
   shurikenSpawner: {fileID: 295299019}
   crashForce: 350
   crashFriction: 0.02
+--- !u!114 &327298715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327298709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406cb3d23cc656e4eb898d6432afbf46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 1
 --- !u!1 &356614680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,6 +1350,7 @@ MonoBehaviour:
   whatIsDeath:
     serializedVersion: 2
     m_Bits: 2624
+  healthComponent: {fileID: 327298715}
 --- !u!1 &899807834
 GameObject:
   m_ObjectHideFlags: 0
