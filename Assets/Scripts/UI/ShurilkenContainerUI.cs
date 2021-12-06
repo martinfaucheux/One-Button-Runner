@@ -7,11 +7,9 @@ public class ShurilkenContainerUI : MonoBehaviour
 {
 
     public GameObject shurikenIconPrefab;
-    ShurikenSpawner _shurikenSpawner;
 
     void Start()
     {
-        _shurikenSpawner = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<ShurikenSpawner>();
         UpdateIcons();
 
         GameEvents.instance.onShurikenCountChange += UpdateIcons;
@@ -24,9 +22,9 @@ public class ShurilkenContainerUI : MonoBehaviour
 
     void UpdateIcons()
     {
-        ShurikenIconUI[] shurikenIcons = GetComponentsInChildren<ShurikenIconUI>();
+        CornerIconUI[] shurikenIcons = GetComponentsInChildren<CornerIconUI>();
         int existingIconCount = shurikenIcons.Length;
-        int newIconCount = _shurikenSpawner.maxAmount;
+        int newIconCount = ShurikenSpawner.instance.maxAmount;
 
         if (existingIconCount < newIconCount)
         {
@@ -38,11 +36,11 @@ public class ShurilkenContainerUI : MonoBehaviour
 
         for (int i = 0; i < existingIconCount; i++)
         {
-            if (i < _shurikenSpawner.currentAmount)
+            if (i < ShurikenSpawner.instance.currentAmount)
             {
                 shurikenIcons[i].SetUnused();
             }
-            else if (i < _shurikenSpawner.maxAmount)
+            else if (i < ShurikenSpawner.instance.maxAmount)
             {
                 shurikenIcons[i].SetUsed();
             }

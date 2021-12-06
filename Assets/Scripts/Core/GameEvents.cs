@@ -7,6 +7,7 @@ public class GameEvents : MonoBehaviour
     public event Action onGameOver;
     public event Action onScoreChange;
     public event Action onShurikenCountChange;
+    public event Action onPlayerHealthChange;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -45,6 +46,14 @@ public class GameEvents : MonoBehaviour
         if (onShurikenCountChange != null)
         {
             onShurikenCountChange();
+        }
+    }
+
+    public void PlayerHealthChangeTrigger()
+    {
+        if (onPlayerHealthChange != null)
+        {
+            onPlayerHealthChange();
         }
     }
 

@@ -8,6 +8,11 @@ public class Health : MonoBehaviour
     private int _maxHealth = 1;
     private int _currentHealth = 1;
 
+    private bool _isPlayer
+    {
+        get { return gameObject.tag == "Player"; }
+    }
+
     public int maxHealth
     {
         get { return _maxHealth; }
@@ -17,7 +22,14 @@ public class Health : MonoBehaviour
     public int currentHealth
     {
         get { return _currentHealth; }
-        private set { _currentHealth = value; }
+        private set
+        {
+            _currentHealth = value;
+            if (_isPlayer)
+            {
+                GameEvents.instance.PlayerHealthChangeTrigger();
+            }
+        }
     }
 
     void Start()

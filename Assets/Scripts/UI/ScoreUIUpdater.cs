@@ -7,6 +7,7 @@ public class ScoreUIUpdater : MonoBehaviour
 
     void Start()
     {
+        UpdateUI();
         GameEvents.instance.onScoreChange += UpdateUI;
     }
     void OnDestroy()

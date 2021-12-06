@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShurikenIconUI : MonoBehaviour
+public class CornerIconUI : MonoBehaviour
 {
     public Image image;
+    public Sprite emptySprite;
+    private Sprite fullSprite;
+
+    void Start()
+    {
+        fullSprite = image.sprite;
+    }
 
     public void Hide()
     {
@@ -15,10 +22,19 @@ public class ShurikenIconUI : MonoBehaviour
     public void SetUnused()
     {
         SetAlpha(1f);
+        image.sprite = fullSprite;
     }
     public void SetUsed()
     {
-        SetAlpha(0.35f);
+        if (emptySprite == null)
+        {
+            SetAlpha(0.35f);
+        }
+        else
+        {
+            SetAlpha(1f);
+            image.sprite = emptySprite;
+        }
     }
 
     private void SetAlpha(float value)
