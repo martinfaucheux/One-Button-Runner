@@ -6,6 +6,7 @@ public class Shuriken : MonoBehaviour
 {
     public float speed = 16f;
     public float duration = 1f;
+    public int damage = 1;
     // public Animator slashAnimator;
     public GameObject slashPrefab;
 

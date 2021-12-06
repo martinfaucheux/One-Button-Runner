@@ -5,20 +5,21 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public LayerMask shurikenLayer;
+    public Health healthComponent;
     int score = 10;
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (IsShuriken(collider))
+        Shuriken shurikenComponent = collider.GetComponent<Shuriken>();
+        if (shurikenComponent != null)
         {
-            ScoreManager.instance.Add(score);
-            Destroy(gameObject);
+            int damage = shurikenComponent.damage;
+            bool isDead = healthComponent.TakeDamage(damage);
+            if (isDead)
+            {
+                ScoreManager.instance.Add(score);
+                Destroy(gameObject);
+            }
         }
-    }
-
-    private bool IsShuriken(Collider2D collider)
-    {
-        int colliderLayer = collider.gameObject.layer;
-        return (shurikenLayer == (shurikenLayer | (1 << colliderLayer)));
     }
 }
