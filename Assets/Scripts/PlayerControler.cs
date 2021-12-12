@@ -6,7 +6,6 @@ public class PlayerControler : MonoBehaviour
     // PUBLIC
     public float jumpForce = 10f;
     public float jumpTime = 0.35f;
-    public float moveSpeed = 8;
     public KeyCode keyCode;
     public Transform feetTransform;
     public float checkRadius = 0.3f;
@@ -92,6 +91,7 @@ public class PlayerControler : MonoBehaviour
 
         if (!_isDead)
         {
+            float moveSpeed = GameManager.instance.gameSpeed;
             transform.position += moveSpeed * Time.deltaTime * Vector3.right;
         }
     }

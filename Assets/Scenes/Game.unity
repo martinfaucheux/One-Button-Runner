@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 193971628}
   - component: {fileID: 193971629}
   - component: {fileID: 193971630}
+  - component: {fileID: 193971631}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -521,6 +522,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   mainMenuSceneName: Main Menu
+--- !u!114 &193971631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193971625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a8d2d0a98133124fa0502c5cf99157b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameSpeed: 8
 --- !u!1 &250473997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,9 +1064,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c7d6c1540cedd4893ae0c27d909b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 15
+  jumpForce: 10
   jumpTime: 0.15
-  moveSpeed: 8
   keyCode: 32
   feetTransform: {fileID: 75097590}
   checkRadius: 0.35
@@ -1074,7 +1087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406cb3d23cc656e4eb898d6432afbf46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 3
+  _maxHealth: 1
 --- !u!1 &356614680
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,13 +18,11 @@ public class EnemySpawner : MonoBehaviour
     public float cameraOffset = 150f;
     public EntityWeight[] entityWeights;
     private int _weightSum;
-    private float _moveSpeed;
     private Transform _cameraTransform;
     private float _lastSpawnTime = 0f;
 
     void Start()
     {
-        _moveSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControler>().moveSpeed;
         _cameraTransform = Camera.main.transform;
         SetWeightSum();
 
@@ -39,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if (Time.time > _lastSpawnTime + minInterDistance / _moveSpeed)
+        if (Time.time > _lastSpawnTime + minInterDistance / GameManager.instance.gameSpeed)
         {
             GameObject prefab = ChooseRandomEntity();
             GameObject.Instantiate(prefab, GetSpawnPosition(), Quaternion.identity);
