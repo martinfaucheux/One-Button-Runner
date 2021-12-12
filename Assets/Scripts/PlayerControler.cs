@@ -23,18 +23,30 @@ public class PlayerControler : MonoBehaviour
     private bool _isJumping = false;
     private float _yVelocity;
     private bool _isDead = false;
+    private Animator _animator;
+
+    private bool isGrounded
+    {
+        get { return _isGrounded; }
+        set
+        {
+            _isGrounded = value;
+            _animator.SetBool("is_jumping", !value);
+        }
+    }
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
+        _animator = GetComponentInChildren<Animator>(false);
     }
 
     void Update()
     {
         _yVelocity = _rigidBody.velocity.y;
-        bool wasGrounded = _isGrounded;
-        _isGrounded = Physics2D.OverlapCircle(feetTransform.position, checkRadius, whatIsGround);
+        bool wasGrounded = isGrounded;
+        isGrounded = Physics2D.OverlapCircle(feetTransform.position, checkRadius, whatIsGround);
 
-        if (!wasGrounded && _isGrounded)
+        if (!wasGrounded && isGrounded)
         {
             shurikenSpawner.Recharge();
         }
@@ -42,7 +54,7 @@ public class PlayerControler : MonoBehaviour
         if (Input.GetKeyDown(keyCode))
         {
 
-            if (_isGrounded)
+            if (isGrounded)
             {
                 _isJumping = true;
                 _jumpTimeCounter = jumpTime;

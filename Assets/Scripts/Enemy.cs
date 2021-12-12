@@ -7,20 +7,34 @@ public class Enemy : MonoBehaviour
     public LayerMask shurikenLayer;
     public Health healthComponent;
     public int collisionDamage = 1;
-    int score = 10;
+    int score = 0;
+    public bool destroyOnPlayerCollision = false;
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Shuriken shurikenComponent = collider.GetComponent<Shuriken>();
-        if (shurikenComponent != null)
+        if (healthComponent != null)
         {
-            int damage = shurikenComponent.damage;
-            bool isDead = healthComponent.TakeDamage(damage);
-            if (isDead)
+            Shuriken shurikenComponent = collider.GetComponent<Shuriken>();
+            if (shurikenComponent != null)
             {
-                ScoreManager.instance.Add(score);
-                Destroy(gameObject);
+                int damage = shurikenComponent.damage;
+                bool isDead = healthComponent.TakeDamage(damage);
+                if (isDead)
+                {
+                    Die();
+                }
             }
         }
+
+        if (destroyOnPlayerCollision && collider.tag == "Player")
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        ScoreManager.instance.Add(score);
+        Destroy(gameObject);
     }
 }
