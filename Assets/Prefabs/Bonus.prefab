@@ -166,5 +166,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42b3d18fd3d26e4f8f7026f02907567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyAfter: 10
-  _startTime: 0
+  destroyAfterTime: 0
+  maxDistanceToCamera: 20

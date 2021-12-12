@@ -15,7 +15,7 @@ public struct EntityWeight
 
 public class EnemySpawner : MonoBehaviour
 {
-    public float minInterDistance = 1f;
+    public float interDistance = 1f;
     public float cameraOffset = 150f;
     public EntityWeight[] entityWeights;
     private int _weightSum;
@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if (Time.time > _lastSpawnTime + minInterDistance / GameManager.instance.gameSpeed)
+        if (Time.time > _lastSpawnTime + interDistance / GameManager.instance.gameSpeed)
         {
             SpawnRandomObject();
         }
@@ -46,7 +46,9 @@ public class EnemySpawner : MonoBehaviour
     {
         EntityWeight entityWeight = ChooseRandomEntity();
 
-        float xPos = _cameraTransform.position.x + cameraOffset;
+        float xPosVariation = 0.3f * interDistance + Random.Range(-1, 1);
+
+        float xPos = _cameraTransform.position.x + cameraOffset + xPosVariation;
         float yPos = Random.Range(entityWeight.minHeight, entityWeight.maxHeight);
         Vector3 spawnPos = new Vector3(xPos, yPos, 0f);
 

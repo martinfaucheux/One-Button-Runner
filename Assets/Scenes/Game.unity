@@ -2818,9 +2818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623d413cf13a2f84d8e8d9efd8ab7aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minY: 1.5
-  maxY: 5
-  minInterDistance: 5
+  interDistance: 7
   cameraOffset: 20
   entityWeights:
   - prefab: {fileID: 4294922738148638929, guid: 883b651e1755c854ab92e56c6cf2d8ce, type: 3}
