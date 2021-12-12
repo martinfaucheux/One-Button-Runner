@@ -348,7 +348,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2140314838}
-  - {fileID: 899807835}
+  - {fileID: 627610425}
   - {fileID: 690772953}
   m_Father: {fileID: 1830098427}
   m_RootOrder: 0
@@ -436,6 +436,7 @@ GameObject:
   - component: {fileID: 193971629}
   - component: {fileID: 193971630}
   - component: {fileID: 193971631}
+  - component: {fileID: 193971632}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -535,6 +536,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSpeed: 8
+--- !u!114 &193971632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193971625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f335c5f4736c864193e0b17f6d630a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freezeDuration: 0.1
 --- !u!1 &250473997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,6 +1683,67 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8813963849295446490, guid: e4f42277b7544eb4788b36d22d68ef75, type: 3}
   m_PrefabInstance: {fileID: 577075001}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &627610424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 627610425}
+  - component: {fileID: 627610427}
+  - component: {fileID: 627610426}
+  m_Layer: 5
+  m_Name: Heart Bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &627610425
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627610424}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 899807835}
+  m_Father: {fileID: 106719780}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 138.3363}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &627610426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627610424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b4a1df162913964bb5adc45f601f6d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounces: 3
+  amplitude: 10
+  bounceDuration: 0.05
+--- !u!222 &627610427
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627610424}
+  m_CullTransparentMesh: 1
 --- !u!1 &690772952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1926,7 +2001,7 @@ GameObject:
   - component: {fileID: 899807837}
   - component: {fileID: 899807836}
   m_Layer: 5
-  m_Name: Heart Container
+  m_Name: Heart List
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1946,13 +2021,13 @@ RectTransform:
   - {fileID: 1162991157}
   - {fileID: 1741339832}
   - {fileID: 2042997707}
-  m_Father: {fileID: 106719780}
-  m_RootOrder: 1
+  m_Father: {fileID: 627610425}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 138.3363}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &899807836
 MonoBehaviour:
@@ -1967,6 +2042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartIconPrefab: {fileID: 8813963849295446491, guid: e7318a925f68fd84eb04953f2c154bf5, type: 3}
+  pingPongAnimator: {fileID: 627610426}
 --- !u!114 &899807837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2822,9 +2898,13 @@ MonoBehaviour:
   cameraOffset: 20
   entityWeights:
   - prefab: {fileID: 4294922738148638929, guid: 883b651e1755c854ab92e56c6cf2d8ce, type: 3}
-    weight: 10
+    weight: 4
     minHeight: 1.5
     maxHeight: 5
+  - prefab: {fileID: 4472933130688106275, guid: fa7892b4d33afc14f92ec74c675dd02f, type: 3}
+    weight: 1
+    minHeight: 0.5
+    maxHeight: 0.5
   - prefab: {fileID: 8552375655148683331, guid: fecd1fbc3138c7c4a9e1a4facb7b5d31, type: 3}
     weight: 1
     minHeight: 1.5

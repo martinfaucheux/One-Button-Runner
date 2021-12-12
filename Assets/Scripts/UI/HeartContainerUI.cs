@@ -7,8 +7,9 @@ public class HeartContainerUI : MonoBehaviour
 {
 
     public GameObject heartIconPrefab;
+    public PingPongAnimator pingPongAnimator;
     private Health _healthComponent;
-
+    private int _previousValue;
     void Start()
     {
         _healthComponent = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
@@ -51,7 +52,10 @@ public class HeartContainerUI : MonoBehaviour
                 heartIcons[i].Hide();
             }
         }
-
-
+        if (_healthComponent.currentHealth < _previousValue)
+        {
+            pingPongAnimator.Animate();
+        }
+        _previousValue = _healthComponent.currentHealth;
     }
 }

@@ -39,6 +39,9 @@ public class Health : MonoBehaviour
 
     public bool TakeDamage(int amount)
     {
+        // TODO: make an Event instead
+        //TimeScaler.instance.Freeze();
+
         int newAmount = Mathf.Max(currentHealth - amount, 0);
         currentHealth = newAmount;
         if (newAmount == 0)
