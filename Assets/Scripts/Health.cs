@@ -51,10 +51,13 @@ public class Health : MonoBehaviour
 
     public void Die()
     {
-        PlayerControler playerControler = GetComponent<PlayerControler>();
-        if (playerControler != null)
+        if (gameObject.tag == "Player")
         {
-            playerControler.Die();
+            PlayerControler playerControler = GetComponent<PlayerControler>();
+            if (playerControler != null)
+            {
+                playerControler.Die();
+            }
         }
         else
         {
