@@ -8,12 +8,13 @@ public struct EntityWeight
     public GameObject prefab;
     public int weight;
 
+    public float minHeight;
+    public float maxHeight;
+
 }
 
 public class EnemySpawner : MonoBehaviour
 {
-    public float minY = 0.5f;
-    public float maxY = 5;
     public float minInterDistance = 1f;
     public float cameraOffset = 150f;
     public EntityWeight[] entityWeights;
@@ -25,8 +26,6 @@ public class EnemySpawner : MonoBehaviour
     {
         _cameraTransform = Camera.main.transform;
         SetWeightSum();
-
-
         GameEvents.instance.onGameOver += OnGameOver;
     }
 
@@ -39,17 +38,21 @@ public class EnemySpawner : MonoBehaviour
     {
         if (Time.time > _lastSpawnTime + minInterDistance / GameManager.instance.gameSpeed)
         {
-            GameObject prefab = ChooseRandomEntity();
-            GameObject.Instantiate(prefab, GetSpawnPosition(), Quaternion.identity);
-            _lastSpawnTime = Time.time;
+            SpawnRandomObject();
         }
     }
 
-    private Vector3 GetSpawnPosition()
+    private GameObject SpawnRandomObject()
     {
+        EntityWeight entityWeight = ChooseRandomEntity();
+
         float xPos = _cameraTransform.position.x + cameraOffset;
-        float yPos = Random.Range(minY, maxY);
-        return new Vector3(xPos, yPos, 0f);
+        float yPos = Random.Range(entityWeight.minHeight, entityWeight.maxHeight);
+        Vector3 spawnPos = new Vector3(xPos, yPos, 0f);
+
+        GameObject go = GameObject.Instantiate(entityWeight.prefab, spawnPos, Quaternion.identity);
+        _lastSpawnTime = Time.time;
+        return go;
     }
 
     private void OnGameOver()
@@ -59,23 +62,24 @@ public class EnemySpawner : MonoBehaviour
 
     private void SetWeightSum()
     {
+        _weightSum = 0;
         foreach (EntityWeight entityWeight in entityWeights)
         {
             _weightSum += entityWeight.weight;
         }
     }
 
-    private GameObject ChooseRandomEntity()
+    private EntityWeight ChooseRandomEntity()
     {
         int random = Random.Range(0, _weightSum);
         foreach (EntityWeight entityWeight in entityWeights)
         {
             if (random < entityWeight.weight)
             {
-                return entityWeight.prefab;
+                return entityWeight;
             }
             random -= entityWeight.weight;
         }
-        return null;
+        return entityWeights[0];
     }
 }

@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public LayerMask shurikenLayer;
     public Health healthComponent;
     public int collisionDamage = 1;
-    int score = 0;
+    public int score = 0;
     public bool destroyOnPlayerCollision = false;
 
     void OnTriggerEnter2D(Collider2D collider)

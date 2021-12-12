@@ -5,24 +5,12 @@ using UnityEngine;
 public class Shuriken : MonoBehaviour
 {
     public float relativeSpeed = 8f;
-    public float duration = 1f;
     public int damage = 1;
     // public Animator slashAnimator;
     public GameObject slashPrefab;
 
-    private float startTime;
-    void Start()
-    {
-        startTime = Time.time;
-    }
-
     void Update()
     {
-        if (Time.time > startTime + duration)
-        {
-            Die();
-        }
-
         float moveSpeed = relativeSpeed + GameManager.instance.gameSpeed;
         transform.position += Vector3.right * Time.deltaTime * moveSpeed;
     }

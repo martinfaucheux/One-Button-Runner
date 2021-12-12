@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4294922738148638928}
   - component: {fileID: 4294922738148638925}
   - component: {fileID: 7820241265847997627}
+  - component: {fileID: -4246361718306755114}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Untagged
@@ -127,6 +128,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   healthComponent: {fileID: 7820241265847997627}
+  collisionDamage: 1
+  score: 10
+  destroyOnPlayerCollision: 0
 --- !u!114 &7820241265847997627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,3 +144,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 1
+--- !u!114 &-4246361718306755114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294922738148638929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42b3d18fd3d26e4f8f7026f02907567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyAfter: 10
+  _startTime: 0
