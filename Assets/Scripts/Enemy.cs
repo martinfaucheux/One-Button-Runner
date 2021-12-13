@@ -9,32 +9,33 @@ public class Enemy : MonoBehaviour
     public int collisionDamage = 1;
     public int score = 0;
     public bool destroyOnPlayerCollision = false;
+    public bool canTakeDamage = true;
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (healthComponent != null)
         {
-            Shuriken shurikenComponent = collider.GetComponent<Shuriken>();
-            if (shurikenComponent != null)
+            if (canTakeDamage)
             {
-                int damage = shurikenComponent.damage;
-                bool isDead = healthComponent.TakeDamage(damage);
-                if (isDead)
+                Shuriken shurikenComponent = collider.GetComponent<Shuriken>();
+                if (shurikenComponent != null)
                 {
-                    Die();
+                    int damage = shurikenComponent.damage;
+                    bool isDead = healthComponent.TakeDamage(damage);
                 }
             }
-        }
 
-        if (destroyOnPlayerCollision && collider.tag == "Player")
-        {
-            Die();
+            if (destroyOnPlayerCollision && collider.tag == "Player")
+            {
+                healthComponent.Die();
+            }
         }
     }
 
-    public void Die()
+    public void OnDeath()
     {
         ScoreManager.instance.Add(score);
-        Destroy(gameObject);
+        GetComponent<Collider2D>().enabled = false;
+        Destroy(gameObject, 1f);
     }
 }

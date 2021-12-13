@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
+
+    public bool destroyOnDeath = false;
+
     [SerializeField]
     private int _maxHealth = 1;
     private int _currentHealth = 1;
+    [SerializeField] UnityEvent onDeathEvent;
 
     private bool _isPlayer
     {
@@ -54,15 +59,8 @@ public class Health : MonoBehaviour
 
     public void Die()
     {
-        if (gameObject.tag == "Player")
-        {
-            PlayerControler playerControler = GetComponent<PlayerControler>();
-            if (playerControler != null)
-            {
-                playerControler.Die();
-            }
-        }
-        else
+        onDeathEvent.Invoke();
+        if (destroyOnDeath)
         {
             Destroy(gameObject);
         }
